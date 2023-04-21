@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Stock Visualizer</title>
+  </head>
+  <body>
+    <h1>Stock Visualizer</h1>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form method="post">
+      <label for="symbol">Select stock symbol:</label>
+      <select name="symbol" required>
+        <!-- 100 most popular stocks as options here -->
+        <option value="AAPL">AAPL</option>
+        <option value="MSFT">MSFT</option>
+        <option value="AMZN">AMZN</option>
+        <option value="GOOGL">GOOGL</option>
+        <option value="GOOG">GOOG</option>
+        <option value="FB">FB</option>
+        <option value="TSLA">TSLA</option>
+        <option value="BRK-A">BRK-A</option>
+        <option value="BRK-B">BRK-B</option>
+        <option value="JPM">JPM</option>
+        <option value="JNJ">JNJ</option>
+        <option value="V">V</option>
+        <option value="PG">PG</option>
+        <option value="NVDA">NVDA</option>
+        <option value="HD">HD</option>
+        <option value="MA">MA</option>
+        <option value="UNH">UNH</option>
+        <option value="DIS">DIS</option>
+        <option value="BAC">BAC</option>
+        <option value="VZ">VZ</option>
+        <option value="ADBE">ADBE</option>
+        <option value="CRM">CRM</option>
+        <option value="CMCSA">CMCSA</option>
+        <option value="KO">KO</option>
+        <option value="MRK">MRK</option>
+        <option value="PEP">PEP</option>
+        <option value="PFE">PFE</option>
+        <option value="T">T</option>
+        <option value="ABBV">ABBV</option>
+        <option value="ABT">ABT</option>
+        <option value="ACN">ACN</option>
+        <option value="ATVI">ATVI</option>
+        <option value="AMD">AMD</option>
+        <option value="AMGN">AMGN</option>
+        <option value="AXP">AXP</option>
+        <option value="BA">BA</option>
+        <option value="BMY">BMY</option>
+        <option value="C">C</option>
+        <option value="CAT">CAT</option>
+        <option value="CELG">CELG</option>
+        <option value="CHTR">CHTR</option>
+        <option value="CI">CI</option>
+        <option value="CSCO">CSCO</option>
+        <option value="CVS">CVS</option>
+        <option value="CVX">CVX</option>
+        <option value="DHR">DHR</option>
+        <option value="DIA">DIA</option>
+        <option value="DUK">DUK</option>
+        <option value="EMR">EMR</option>
+        <option value="EXC">EXC</option>
+        <option value="F">F</option>
+        <option value="FANG">FANG</option>
+        <option value="GE">GE</option>
+        <option value="GILD">GILD</option>
+        <option value="GM">GM</option>
+        <option value="GS">GS</option>
+        <option value="HON">HON</option>
+        <option value="IBM">IBM</option>
+        <option value="INTC">INTC</option>
+        <option value="JPM">JPM</option>
+        <option value="KHC">KHC</option>
+        <option value="KMI">KMI</option>
+        <option value="LLY">LLY</option>
+        <option value="LMT">LMT</option>
+        <option value="LOW">LOW</option>
+        <option value="MCD">MCD</option>
+        <option value="MDLZ">MDLZ</option>
+        <option value="MDT">MDT</option>
+        <option value="MMM">MMM</option>
+        <option value="MO">MO</option>
+        <option value="MON">MON</option>
+        <option value="MS">
+          MS
+
+          <!-- ... -->
+        </option>
+      </select>
+
+      <br />
+      <label for="time_series">Select time series:</label>
+      <select name="time_series" required>
+        <option value="1">Intraday</option>
+        <option value="2">Daily Adjusted</option>
+        <option value="3">Weekly</option>
+        <option value="4">Monthly</option>
+      </select>
+      <br />
+      <label for="start_date">Select start date:</label>
+      <input type="date" name="start_date" required />
+      <br />
+      <label for="end_date">Select end date:</label>
+      <input type="date" name="end_date" required />
+      <br />
+      <label for="chart_type">Choose a graph type:</label>
+      <select name="chart_type" required>
+        <option value="1">Line</option>
+        <option value="2">Bar</option>
+      </select>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    {% if plot_url %}
+    <img
+      src="data:image/png;base64,{{ plot_url }}"
+      alt="plot of stock prices"
+    />
+    {% endif %}
+  </body>
+</html>
